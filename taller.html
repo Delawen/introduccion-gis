@@ -266,98 +266,16 @@
 		<p>$control.activate();</p>
 	</section>
 	<section>
-		<h2>Controles</h2>
-		<div>
-			<div>
-				<input type="radio" name="control" value="line" onclick="changeControl(controls[0])">Line</input>
-				<input type="radio" name="control" value="polygon" onclick="changeControl(controls[0])">Polygon</input>
-			</div>
-			<div id="map5">
-				<button id="loadMapButton5" onclick="loadMap5()">Cargar</button>
-			</div>
-			<p id="output"></p>
-		        <script>
-			var controls = [];
-
-			function changeControl(control) {
-			    for(var c in controls) {
-				controls[c].deactivate();
-			    }
-			    control.activate();
-			}
-			function loadMap5() {
-		            var map = new OpenLayers.Map("map5");
-		            map.addLayer(new OpenLayers.Layer.OSM());
-		            var bounds = new OpenLayers.Bounds();	
-			    bounds.extend(new OpenLayers.LonLat(-671944,4489904));	
-			    bounds.extend(new OpenLayers.LonLat(-658568,4497547));	
-			    map.zoomToExtent(bounds, true);
-			
-			    controls[0] = new OpenLayers.Control.Measure(
-	    			OpenLayers.Handler.Path, {
-				persist: true});
-			    controls[1] =  new OpenLayers.Control.Measure(
-	    			OpenLayers.Handler.Polygon, {
-				persist: true});
-
-			    for(var key in controls) {
-		                control = controls[key];
-		                control.events.on({
-		                    "measure": handleMeasurements,
-		                    "measurepartial": handleMeasurements
-		                });
-		                map.addControl(control);
-		            }
-			    
-			    changeControls(controls[0]);
-
-			    document.getElementById("loadMapButton5").style.display = "none";
-			}
-
-		        function handleMeasurements(event) {
-		            var geometry = event.geometry;
-		            var units = event.units;
-		            var order = event.order;
-		            var measure = event.measure;
-		            var element = document.getElementById('output');
-		            var out = "";
-		            if(order == 1) {
-		                out += "measure: " + measure.toFixed(3) + " " + units;
-		            } else {
-		                out += "measure: " + measure.toFixed(3) + " " + units + "<sup>2</" + "sup>";
-		            }
-		            element.innerHTML = out;
-        		}
-		        </script>
-		</div>
+		<h2>Medición</h2>	
+		<p style="height:300px;width:600px">
+			<object height="350" width="550" style="bottom:40px" data="example.html"></object>
+		</p>
 	</section>
 	<section>
-		<h2>Edición</h2>
-		<div>
-			<div id="map6">
-				<button id="loadMapButton6" onclick="loadMap6()">Cargar</button>
-			</div>
-		        <script>
-			var map = null;
-			function loadMap6() {
-		            map = new OpenLayers.Map("map6");
-		            map.addLayer(new OpenLayers.Layer.OSM());
-		            var bounds = new OpenLayers.Bounds();	
-			    bounds.extend(new OpenLayers.LonLat(-671944,4489904));	
-			    bounds.extend(new OpenLayers.LonLat(-658568,4497547));	
-			    map.zoomToExtent(bounds, true);
-			
-			    var vector = new OpenLayers.Layer.Vector("Vector Layer", {
-				projection: "EPSG:900913"});
-			    map.addLayer(vector);
-			    var control = new OpenLayers.Control.EditingToolbar(vector);
-			    map.addControl(control);
-			    control.activate();
-
-			    document.getElementById("loadMapButton6").style.display = "none";
-			}
-		        </script>
-		</div>
+		<h2>Edición</h2>	
+		<p style="height:300px;width:600px">
+			<object height="350" width="550" style="bottom:40px" data="example2.html"></object>
+		</p>
 	</section>
 	<section>
 		<h2>Otros controles típicos</h2>
@@ -368,6 +286,28 @@
 		<p>map.addControl(new OpenLayers.Control.Scale());</p>
 		<p>map.addControl(new OpenLayers.Control.OverviewMap());</p>
 		<p>map.addControl(new OpenLayers.Control.PanPanel());</p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>CartoDB</h2>
+		<p>Librería propia</p>
+		<p><a href="https://github.com/CartoDB/cartodb.js/blob/develop/examples/openlayers.html">Usar capa de tiles</a></p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>OpenStreetMap</h2>
+		<p>Planet OSM</p>
+		<p><a href="http://wiki.openstreetmap.org/wiki/Xapi">XAPI</a></p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>Ya podéis volar solos</h2>
+		<p>Os sigo esperando este fin de semana en la Mapping Party</p>
+		<p>O si no, en geoinquietos</p>
+		<p>En cualquier caso, gracias por aguantarme</p>
 	</section>
 </section>
 </div>
