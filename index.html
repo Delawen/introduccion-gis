@@ -1,391 +1,291 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
 
-	<head>
-		<link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>	
-		<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
-		<meta charset="utf-8">
+    <title>Introducción GIS</title>
 
-		<title>Introducción GIS</title>
+    <meta name="description" content="Se trataran los conceptos básicos sobre mapas y localización para poder manejar datos geográficos y luego se hará un recorrido sobre el software básico para crear, almacenar, mostrar y modificar mapas.">
+    <meta name="author" content="María Arias de Reyna Domínguez">
 
-		<meta name="description" content="Se trataran los conceptos básicos sobre mapas y localización para poder manejar datos geográficos y luego se hará un recorrido sobre el software básico para crear, almacenar, mostrar y modificar mapas.">
-		<meta name="author" content="María Arias de Reyna Domínguez">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../reveal/css/reveal.css">
+    <link rel="stylesheet" href="../stylesheets/common.css">
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
 
-		<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
-        <link rel="stylesheet" href="stylesheets/delawen.css" id="theme">
+    <script>
+      if (window.location.search.indexOf('geocat') > 0)
+        document.write('<link rel="stylesheet" href="../stylesheets/geocat.css">');
+      else
+        document.write('<link rel="stylesheet" href="../stylesheets/delawen.css">');
+    </script>
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+  </head>
 
-		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-		<script>
-			if( window.location.search.match( /print-pdf/gi ) ) {
-				var link = document.createElement( 'link' );
-				link.rel = 'stylesheet';
-				link.type = 'text/css';
-				link.href = 'css/print/pdf.css';
-				document.getElementsByTagName( 'head' )[0].appendChild( link );
-			}
-		</script>
+  <body>
 
-		<!--[if lt IE 9]>
-		<script src="reveal.js/lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
-
-	<body>
-
-		<div class="reveal">
-			<div class="slides">
+    <div class="reveal">
+      <div class="slides">
 <section>
-    	<h1><strong>S</strong>istemas de</h1>
-	<h1><strong>I</strong>nformación</h1>
-	<h1><strong>G</strong>eográfica</h1>
-	<div>Mapas, localización y datos geográficos</div>
-	<div>usando software libre</div>
-	<img src="images/cat_penguin.jpg" style="height:20%"/>
-	<div><a href="http://twitter.com/delawen">@delawen</a></div>
+  <div class="title">
+    <h2><strong>S</strong>istemas de <strong>I</strong>nformación <strong>G</strong>eográfica</h2>
+    <h3>Mapas, localización y datos geográficos usando software libre</h3>
+    <img src="images/cat_penguin.jpg" class="clean title" />
+    <h3><a href="https://twitter.com/delawen">María Arias de Reyna</a> (<a href="https://twitter.com/delawen">@delawen</a>) at <a href="https://twitter.com/geocat_bv">GeoCat bv</a></h3>
+  </div>
 </section>
 <section>
-	<section>
-		<h2>¿Qué es un SIG?</h2>
-		<p>Gestión de datos espaciales</p>
-		<p>Análisis de datos</p>
-		<p>Visualización de datos (gráficos, informes, mapas)</p>
-		<img style="height:50%" src="images/cat_map_by_sally5678-d6i3bir.jpg"/>
-	</section>
-	<section>
-		<h2>Necesitamos</h2>
-		<p>Almacén de datos geolocalizados</p>
-		<img style="height:50%" src="images/b6df0646d0fe0fa5b7661a18599f666c-d5mqghi.jpg"/>
-		<p>Librería que entienda y procese la geolocalización</p>
-		<p>Librería para visualizar datos geográficos (mapas)</p>
-	</section>
+  <section>
+    <h2>Quién soy yo y por qué me atrevo a hablar de esto</h2>
+    <div style="float:left;max-width:49%">
+  <p>Pertenezco a la manada de <a href="https://geocat.net">GeoCat bv</a> (<a href="https://twitter.com/geocat_bv">@geocat_bv</a>)</p>
+      <img title="GeoCat Herd" style="max-width:800px;max-height:200px;margin:0px" class="clean" src="https://pbs.twimg.com/media/CkbClWVXIAQYY1M.jpg">
+      <img title="GeoCats" style="max-width:800px;max-height:200px;margin:0px" class="clean lotsofcats"></div>
+    <div>
+      <img title="GeoCat" class="quienessomos clean">
+    </div>
+  </section>
+  <section data-background="../stylesheets/images/crazycat.gif">
+    <h4 class="fragment" style="position:absolute;top:20%;margin-left:400px;background:white"><a href="https://www.youtube.com/watch?v=LD_-x51Dltw" target="_blank">Matamos Basándonos en los Metadatos</a></h4>
+    <h4 class="fragment" style="position:absolute;top:40%;margin-left:400px;background:white"><a href="../2016/GeoCampZombie" target="_blank">Cómo sobrevivir a un apocalipsis zombie (de gatitos)</a></h4>    
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Datos</h2>
-		<p>Datos normales + Geometría</p>
-		<img src="images/8511821496_d54dfb770a_k.jpg" style="height:30%" />
-		<p class="fragment" data-fragment-index="1">Coordenadas: vertical y horizontal</p>
-		<p class="fragment" data-fragment-index="1">Coordenadas: longitud y latitud</p>
-	</section>
-	<section>
-		<h2>Datos</h2>
-		<p>Dos tipos de datos:</p>
-		<p><ul>
-			<li>Raster</li>
-			<li>Vectorial</li>
-		</ul></p>
-		<img style="height:40%" src="images/Layers.png"/>
-	</section>
-	<section>
-		<h2>Datos</h2>
-		<p>Formatos estándar:</p>
-		<ul>
-			<li>WKT (Well Known Text)
-				<ul>
-					<li>POINT (30 30)</li>
-					<li>LINESTRING(1 1, 5 5, 10 10, 20 20)</li>
-					<li>POLYGON ((0 0, 10 0, 10 10, 0 0))</li>
-				</ul>
-			</li>
-			<li>WKB (Well Known Binary)
-				<ul>
-					<li>POINT (2 4)</li>
-					<li>000000000140000000000000004010000000000000</li>
-				</ul>
-			</li>
-		</ul>
-	</section>
-	<section>
-		<h2>Almacenamiento</h2>
-		<img style="width:45%;float:right;" src="images/160490011_b0cecf8fa1_b.jpg"/>
-		<ul style="float:left;width:50%">
-			<li><p>Ficheros</p>
-				<ul>
-					<li>JPG, PNG, BMP, ... (Raster)</li>
-					<li>GML, KML, ...</li>
-					<li>Shapefile</li>
-				</ul>
-			</li>
-			<li><p>Bases de Datos</p></li>
-			<li><p>CartoDB</p></li>
-		</ul>
-	</section>
-	<section>
-		<h2>Fuentes de Datos Libres</h2>
-		<p>OpenStreetMap</p>
-		<p>IGN (PNOA)</p>
-		<img style="height:70%" src="images/cat_by_ahmetorhan.jpg"/>
-	</section>
+  <section>
+    <h2>¿Qué es un SIG?</h2>
+    <img style="height:80%" src="images/cat_map_by_sally5678-d6i3bir.jpg"/>
+    <p>Gestión, análisis y visualización de datos espaciales</p>
+  </section>
+  <section>
+    <h2>Almacén de datos geolocalizados</h2>
+    <img style="height:80%" src="images/b6df0646d0fe0fa5b7661a18599f666c-d5mqghi.jpg"/>
+  </section>
+  <section>
+    <h2>Datos Espaciales</h2>
+    <img src="images/8511821496_d54dfb770a_k.jpg" style="height:80%" />
+    <p>Datos normales + Geometría</p>
+  </section>
+  <section>
+    <h2>Datos Espaciales</h2>
+    <img class="clean" style="height:80%" src="images/Layers.png"/>
+  </section>
+  <section>
+    <h2>Datos Espaciales</h2>
+    <p><strong>WKT (Well Known Text)</strong></p>
+    <p>POINT (30 30)</p>
+    <p>LINESTRING(1 1, 5 5, 10 10, 20 20)</p>
+    <p>POLYGON ((0 0, 10 0, 10 10, 0 0))</p>
+    <img class="clean cat lawyer" style="height:40%"/>
+    <p class="fragment" data-fragment-index="1"><strong>WKB (Well Known Binary)</strong>
+    00&nbsp;00000001&nbsp;4000000000000000&nbsp;4010000000000000
+      </p>
+  </section>
+  <section>
+    <h2>Almacenamiento</h2>
+    <img style="width:49%;float:right;" src="images/160490011_b0cecf8fa1_b.jpg"/>
+    <p><strong>Ficheros</strong></p>
+    <ul>
+      <li>JPG, PNG, BMP,...</li>
+      <li>GML, KML,...</li>
+      <li>GeoPackage</li>
+    </ul>
+    <p class="fragment" data-fragment-index="1"><strong>Bases de Datos</strong></p>
+    <ul>
+      <li class="fragment" data-fragment-index="1">PostGIS</li>
+      <li class="fragment" data-fragment-index="1">MySQL Spatial</li>
+      <li class="fragment" data-fragment-index="1">H2 Spatial</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Fuentes de Datos Libres</h2>
+    <p>OpenStreetMap</p>
+    <p>IGN (PNOA)</p>
+    <img style="height:70%" src="images/cat_by_ahmetorhan.jpg"/>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Visualización de Mapas</h2>
-		<p>Visualizar una geometría en dos dimensiones es fácil</p>
-		<p>¿Cómo visualizar una esfera sobre una pantalla plana?</p>
-		<img style="height:70%" src="images/Cat_by_milena_pl.jpg"/>
-	</section>
-	<section>
-		<h2>Mapas</h2>="
-		<img src="images/Plano_de_Sevilla_1860.jpg"/>
-	</section>
-	<section>
-		<h2>Mapas</h2>
-		<p>Proyección Mercator</p>
-		<img src="images/1280px-Usgs_map_mercator.svg.png"/>
-	</section>
-	<section>
-		<h2>Mapas</h2>
-		<img src="images/africa-map-955x1024.jpg"/>
-	</section>
-	<section>
-		<h2>Mapas</h2>
-		<img src="images/Projection_conique.jpg"/>
-	</section>
-	<section>
-		<h2>Datos geolocalizados</h2>
-		<img src="images/Waterman_projection_(Pacific_centered).jpg"/>
-	</section>
-	<section>
-		<h2>Mapas</h2>
-		<p>Solución: diferentes proyecciones según la zona que queramos mostrar</p>
-		<p>Proyecciones EPSG (European Petroleum Survey Group)</p>
-		<img style="height:40%" src="images/98993461_593c72d2dc_o.jpg"/>
-	</section>
-	<section>
-		<h2>Mapas</h2>
-		<p>¿Y los mapas mundiales?</p>
-		<p>Mercator (EPSG4326) o EPSG900913</p>
-		<img src="images/straight_line.png"/>
-	</section>
+  <section>
+    <h2>Visualización</h2>
+    <img class="clean" style="height:90%" src="images/Plano_de_Sevilla_1860.jpg"/>
+  </section>
+  <section>
+    <h2>Visualización</h2>
+    <img style="height:90%" src="images/Cat_by_milena_pl.jpg"/>
+  </section>
+  <section>
+    <h2>Proyección Mercator</h2>
+    <img class="clean" style="height:90%" src="images/1280px-Usgs_map_mercator.svg.png"/>
+  </section>
+  <section>
+    <h2>Proyecciones</h2>
+    <img class="clean" style="height:90%" src="images/africa-map-955x1024.jpg"/>
+  </section>
+  <section>
+    <h2>Proyecciones</h2>
+    <img class="clean" style="height:90%" src="images/Projection_conique.jpg"/>
+  </section>
+  <section>
+    <h2>Proyecciones</h2>
+    <img class="clean" style="height:90%" src="images/Waterman_projection_(Pacific_centered).jpg"/>
+  </section>
+  <section>
+    <h2>Proyecciones</h2>
+    <p>Proyecciones EPSG (European Petroleum Survey Group)</p>
+    <img class="clean" style="height:70%" src="images/98993461_593c72d2dc_o.jpg"/>
+  </section>
+  <section>
+    <h2>Proyecciones</h2>
+    <p>EPSG4326 o EPSG900913</p>
+    <img class="clean" style="height:70%" src="images/straight_line.png"/>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Software GIS</h2>
-		<p>Servidores de Mapas</p>
-		<p>Análisis de Datos</p>
-		<p>Bases de Datos</p>
-		<p>Catálogo de Datos</p>
-		<p>Web Mapping (clientes para navegadores)</p>
-		<p>Clientes de Escritorio</p>
-		<p>Librerías para móviles</p>
-	</section>
+  <section>
+    <h2>Servidores de Mapas</h2>
+    <p>Estilos parecidos al CSS</p>
+    <p>Estándares WMS y WFS</p>
+    <p>Servidores de Teselas</p>
+    <p>Algunos incluyen el estándar WPS</p>
+  </section>
+  <section>
+    <h2>Servidores de Mapas</h2>
+    <p>MapServer</p>
+    <p>GeoServer</p>
+    <p>Degree</p>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Software GIS</h2>
-		<p><strong>Servidores de Mapas</strong></p>
-		<p>Análisis de Datos</p>
-		<p>Bases de Datos</p>
-		<p>Catálogo de Datos</p>
-		<p>Web Mapping (clientes para navegadores)</p>
-		<p>Clientes de Escritorio</p>
-		<p>Librerías para móviles</p>
-	</section>
-	<section>
-		<h2>Servidores de Mapas</h2>
-		<p>Estilos parecidos al CSS</p>
-		<p>Estándares WMS y WFS</p>
-		<p>Servidores de Teselas</p>
-		<p>Algunos incluyen el estándar WPS</p>
-	</section>
-	<section>
-		<h2>Servidores de Mapas</h2>
-		<p>MapServer</p>
-		<p>GeoServer</p>
-		<p>Degree</p>
-	</section>
+  <section>
+    <h2>Análisis de Datos</h2>
+    <p>Geoprocesamiento: Manipulación de información geoespacial</p>
+    <ul>
+      <li>GDAL</li>
+      <li>GeoTools  (OGC)</li>
+    </ul>
+        <p>Routing: Enrutamiento y análisis de redes</p>
+    <ul>
+      <li>pgRouting</li>
+      <li>OSRM</li>
+    </ul>
+        <p>LiDAR: Manipulación y procesado datos láser</p>
+    <ul>
+      <li>PDAL (GDAL para puntos)</li>
+    </ul>
+        <p>Otros</p>
+    <ul>
+      <li>GeoBatch: Flujos de procesamiento</li>
+          <li>Mapnik: Renderizado de mapas</li>
+    </ul>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Software GIS</h2>
-		<p><strike>Servidores de Mapas</strike></p>
-		<p><strong>Análisis de Datos</strong></p>
-		<p>Bases de Datos</p>
-		<p>Catálogo de Datos</p>
-		<p>Web Mapping (clientes para navegadores)</p>
-		<p>Clientes de Escritorio</p>
-		<p>Librerías para móviles</p>
-	</section>
-	<section>
-		<h2>Análisis de Datos</h2>
-		<p>Geoprocesamiento: Manipulación de información geoespacial</p>
-		<ul>
-			<li>GDAL</li>
-			<li>GeoTools  (OGC)</li>
-		</ul>
-    		<p>Routing: Enrutamiento y análisis de redes</p>
-		<ul>
-			<li>pgRouting</li>
-			<li>OSRM</li>
-		</ul>
-    		<p>LiDAR: Manipulación y procesado datos láser</p>
-		<ul>
-			<li>PDAL (GDAL para puntos)</li>
-		</ul>
-    		<p>Otros</p>
-		<ul>
-			<li>GeoBatch: Flujos de procesamiento</li>
-    			<li>Mapnik: Renderizado de mapas</li>
-		</ul>
-	</section>
+  <section>
+    <h2>ISO 19125</h2>
+    <ul>
+      <li>WKT, WKB</li>
+      <li>Contains, Overlaps, Intersects</li>
+      <li>Area, Distance</li>
+      <li>Buffer, Intersection</li>
+    </ul>
+  </section>
+  <section>
+    <h2>ISO 19125</h2>
+    <img src="images/8511821496_d54dfb770a_k.jpg" style="height:30%" />
+    <ul>
+      <li>PostgreSQL -> PostGIS</li>
+      <li>H2 -> H2GIS</li>
+      <li>SQLite -> Spatialite</li>
+      <li>MySQL -> MySQL Spatial</li>
+      <li>MongoDB (NoSQL)</li>
+    </ul>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Software GIS</h2>
-		<p><strike>Servidores de Mapas</strike></p>
-		<p><strike>Análisis de Datos</strike></p>
-		<p><strong>Bases de Datos</strong></p>
-		<p>Catálogo de Datos</p>
-		<p>Web Mapping (clientes para navegadores)</p>
-		<p>Clientes de Escritorio</p>
-		<p>Librerías para móviles</p>
-	</section>
-	<section>
-		<h2>ISO 19125</h2>
-		<ul>
-			<li>WKT, WKB</li>
-			<li>Contains, Overlaps, Intersects</li>
-			<li>Area, Distance</li>
-			<li>Buffer, Intersection</li>
-		</ul>
-	</section>
-	<section>
-		<h2>ISO 19125</h2>
-		<img src="images/8511821496_d54dfb770a_k.jpg" style="height:30%" />
-		<ul>
-			<li>PostgreSQL -> PostGIS</li>
-			<li>H2 -> H2GIS</li>
-			<li>SQLite -> Spatialite</li>
-			<li>MySQL -> MySQL Spatial</li>
-			<li>MongoDB (NoSQL)</li>
-		</ul>
-	</section>
+  <section>
+    <h2>CSW (OGC)</h2>
+    <p>geoNetwork</p>
+    <p>pyCSW</p>
+    <img style="height:60%" src="images/geonetwork.png"/>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Software GIS</h2>
-		<p><strike>Servidores de Mapas</strike></p>
-		<p><strike>Análisis de Datos</strike></p>
-		<p><strike>Bases de Datos</strike></p>
-		<p><strong>Catálogo de Datos</strong></p>
-		<p>Web Mapping (clientes para navegadores)</p>
-		<p>Clientes de Escritorio</p>
-		<p>Librerías para móviles</p>
-	</section>
-	<section>
-		<h2>CSW (OGC)</h2>
-		<p>geoNetwork</p>
-		<p>pyCSW</p>
-		<img style="height:60%" src="images/geonetwork.png"/>
-	</section>
+  <section>
+    <h2>Web Mapping</h2>
+    <p>OpenLayers</p>
+    <p>Leafleet</p>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Software GIS</h2>
-		<p><strike>Servidores de Mapas</strike></p>
-		<p><strike>Análisis de Datos</strike></p>
-		<p><strike>Bases de Datos</strike></p>
-		<p><strike>Catálogo de Datos</strike></p>
-		<p><strong>Web Mapping (clientes para navegadores)</strong></p>
-		<p>Clientes de Escritorio</p>
-		<p>Librerías para móviles</p>
-	</section>
-	<section>
-		<h2>Web Mapping</h2>
-		<p>OpenLayers</p>
-		<p>Leafleet</p>
-	</section>
+  <section>
+    <h2>Clientes de Escritorio</h2>
+    <p>qGIS</p>
+    <img class="clean" style="height:80%" src="images/14812503730_a41eb17e03_o.png"/>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Software GIS</h2>
-		<p><strike>Servidores de Mapas</strike></p>
-		<p><strike>Análisis de Datos</strike></p>
-		<p><strike>Bases de Datos</strike></p>
-		<p><strike>Catálogo de Datos</strike></p>
-		<p><strike>Web Mapping (clientes para navegadores)</strike></p>
-		<p><strong>Clientes de Escritorio</strong></p>
-		<p>Librerías para móviles</p>
-	</section>
-	<section>
-		<h2>Clientes de Escritorio</h2>
-		<p>qGIS</p>
-		<p>uDig</p>
-		<p>gvSIG</p>
-		<img style="height:60%" src="images/14812503730_a41eb17e03_o.png"/>
-	</section>
+  <section>
+    <h2>Librerías para Móviles</h2>
+    <p>OSMDroid</p>
+    <p>Masforge</p>
+    <p>OsmAnd</p>
+    <p>gvSIG mini</p>
+    <p>PhoneGap - Cordova (HTML5)</p>
+  </section>
 </section>
 <section>
-	<section>
-		<h2>Software GIS</h2>
-		<p><strike>Servidores de Mapas</strike></p>
-		<p><strike>Análisis de Datos</strike></p>
-		<p><strike>Bases de Datos</strike></p>
-		<p><strike>Catálogo de Datos</strike></p>
-		<p><strike>Web Mapping (clientes para navegadores)</strike></p>
-		<p><strike>Clientes de Escritorio</strike></p>
-		<p><strong>Librerías para móviles</strong></p>
-	</section>
-	<section>
-		<h2>Librerías para Móviles</h2>
-		<p>OSMDroid</p>
-		<p>Masforge</p>
-		<p>OsmAnd</p>
-		<p>gvSIG mini</p>
-		<p>PhoneGap - Cordova (HTML5)</p>
-	</section>
-</section>
-<section>
-	<section>
-		<h2>¿Os apuntáis a la <a href="http://mappingpartysevilla.wordpress.com/">Mapping Party?</a></h2>
-		<p>Semana que viene</p>
-		<p>Ayudar a completar OpenStreetMap</p>
-		<p>Conocer a gente interesada en GIS</p>
-	</section>
-	<section>
-	<h2>Y eso es todo</h2>
-	<div>¿Dudas, preguntas, sugerencias, críticas destructivas?</div>
-	<img src="http://delawen.github.io/Taller-GIS/talleres/geonetwork/images/lotsofcats.png">
-	<p>Más información en el <a href="http://wiki.osgeo.org/wiki/Panorama_SIG_Libre_2014">panorama SIG libre</a>, en el <a href="http://wiki.osgeo.org/wiki/Libro_SIG">libro libre de GIS libre</a> o en las reuniones de <a href="http://wiki.osgeo.org/wiki/Category:Geoinquietos_Sevilla">GeoInquietos</a></p>
+  <section>
+    <h2>¿Os apuntáis a <a href="https://www.meetup.com/es-ES/Geoinquietos-Sevilla/">GeoInquietos?</a></h2>
+    <img src="https://wiki.osgeo.org/images/thumb/6/63/GeoinquietosSVQ.png/350px-GeoinquietosSVQ.png" class="clean"/>
+  </section>
+  <section>
+    <h2>¿Os habéis quedado con más ganas?</h2>
+    <a href="https://www.amazon.es/Introducci%C3%B3n-los-SIG-Victor-Olaya/dp/1537603051/ref=sr_1_cc_2?s=aps&ie=UTF8&qid=1488108252&sr=1-2-catcorr&keywords=victor+olaya" 
+  target="_blank"><img src="https://images-na.ssl-images-amazon.com/images/I/31PfWYmgyML._SX311_BO1,204,203,200_.jpg" class="clean"/></a>
+  </section>
+  <section>
+  <h2>Y eso es todo por ahora</h2>
+  <div>¿Dudas, preguntas, sugerencias, críticas destructivas?</div>
+  <img src="http://delawen.github.io/Taller-GIS/talleres/geonetwork/images/lotsofcats.png">
+  <p>Más información en el <a href="http://wiki.osgeo.org/wiki/Panorama_SIG_Libre_2014">panorama SIG libre</a>, 
+en el <a href="http://volaya.github.io/libro-sig/">libro libre de GIS libre</a> o en las reuniones de 
+<a href="http://wiki.osgeo.org/wiki/Category:Geoinquietos_Sevilla">GeoInquietos</a></p>
 </section>
 </div>
 
-		</div>
+    </div>
 
-		<script src="reveal.js/lib/js/head.min.js"></script>
-		<script src="reveal.js/js/reveal.min.js"></script>
+    <script src="../reveal/lib/js/head.min.js"></script>
+    <script src="../reveal/js/reveal.js"></script>
 
-		<script>
+    <script>
 
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
 
-				theme: Reveal.getQueryHash().theme, 
-				transition: Reveal.getQueryHash().transition || 'default', 
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-				dependencies: [
-					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
 
-		</script>
+    </script>
 
-	</body>
+  </body>
 </html>
