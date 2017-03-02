@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Introducción GIS - Taller</title>
+
+    <meta name="description" content="Se trataran los conceptos básicos sobre mapas y localización para poder manejar datos geográficos y luego se hará un recorrido sobre el software básico para crear, almacenar, mostrar y modificar mapas.">
+    <meta name="author" content="María Arias de Reyna Domínguez">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.css">
+    <link rel="stylesheet" href="../stylesheets/common.css">
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+
+   <link rel="stylesheet" href="leaflet/leaflet.css" />
+   <script src="leaflet/leaflet.js"></script>
+
+ <style>
+    .map {
+      width:600px;
+      height:400px;
+    }
+  </style>
+
+    <script>
+      if (window.location.search.indexOf('geocat') > 0)
+        document.write('<link rel="stylesheet" href="../stylesheets/geocat.css">');
+      else
+        document.write('<link rel="stylesheet" href="../stylesheets/delawen.css">');
+    </script>
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+<section>
+  <section>
+    <h2>Hello Leaflet</h2>
+<p style="font-size:80%;text-align:left">
+&lt;html>
+<br/>
+&nbsp;&nbsp;&lt;head>
+<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js">&lt;/script>
+<br/>
+ &lt;style>
+    #map {
+      width:600px;
+      height:400px;
+    }
+  &lt;/style>
+&nbsp;&nbsp;&lt;/head><br/>
+&nbsp;&nbsp;&lt;body><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="map">&lt;/div><br/>
+&lt;script><br/>
+var center = new L.LatLng(37.39247, -6.00629);
+      var map1 = new L.Map('map1', {center: center, zoom: 15});
+
+      var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    }).addTo(map1);
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script><br/>
+&nbsp;&nbsp;&lt;/body><br/>
+&lt;/html>
+</p>
+  </section>
+  <section>
+    <div id="map1" class="map"></div>
+    <script>
+      var center = new L.LatLng(37.39247, -6.00629);
+      var map1 = new L.Map('map1', {center: center, zoom: 15});
+
+      var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    }).addTo(map1);
+    </script>
+  </section>
+</section>
+</div>
+
+    </div>
+
+    <script src="../reveal/lib/js/head.min.js"></script>
+    <script src="../reveal/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
